@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Helmet Violation Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+body {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(14, 14, 25, 0.70), rgba(14, 14, 25, 0.70)),
+        url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+        .main-card {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 28px;
+            overflow: hidden;
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .top-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            border-radius: 14px;
+            padding: 12px;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-body-custom {
+            padding: 40px;
+            color: white;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.75);
+            margin-top: 10px;
+            margin-bottom: 35px;
+        }
+
+        .upload-box {
+            border: 2px dashed rgba(255,255,255,0.35);
+            border-radius: 24px;
+            padding: 45px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .upload-box:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: #0d6efd;
+            transform: scale(1.01);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .upload-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .upload-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+        }
+
+        .file-display {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(13,110,253,0.12);
+            color: #8ec5ff;
+            display: none;
+        }
+
+        .btn-process {
+            margin-top: 25px;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s ease;
+            background: linear-gradient(135deg, #0d6efd, #3d8bfd);
+            border: none;
+        }
+
+        .btn-process:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13,110,253,0.35);
+        }
+
+        .features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .feature-box {
+            background: rgba(255,255,255,0.06);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .feature-box i {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 768px) {
+            .card-body-custom {
+                padding: 25px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main-card">
+
+    <div class="card-body-custom">
+
+        <!-- Top Buttons -->
+        <div class="top-bar">
+            <a href="/image" class="btn btn-outline-light mode-btn">
+                <i class="bi bi-image"></i> Image Mode
+            </a>
+
+            <a href="/live-classify" class="btn btn-success mode-btn">
+                <i class="bi bi-camera-video-fill"></i> Live Mode
+            </a>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center">
+            <h1 class="title">Helmet Violation Detection</h1>
+
+            <p class="subtitle">
+                Upload traffic videos to automatically detect helmet violations,
+                extract number plates, and analyze road safety.
+            </p>
+        </div>
+
+        <!-- Upload Form -->
+        <form method="POST" enctype="multipart/form-data">
+
+            <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+
+                <div class="upload-icon">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+                </div>
+
+                <div class="upload-title">
+                    Drag & Drop Video Here
+                </div>
+
+                <div class="upload-subtitle mt-2">
+                    Supported formats: MP4, AVI, MOV
+                </div>
+
+                <input type="file" name="video" id="fileInput" hidden required>
+
+            </div>
+
+            <!-- File Name -->
+            <div id="fileName" class="file-display"></div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary btn-process w-100">
+                <i class="bi bi-cpu-fill"></i>
+                Start AI Processing
+            </button>
+
+        </form>
+
+        <!-- Features -->
+        <div class="features">
+
+            <div class="feature-box">
+                <i class="bi bi-shield-check"></i>
+                <p>Helmet Detection</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="bi bi-credit-card-2-front"></i>
+                <p>Number Plate OCR</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="bi bi-graph-up-arrow"></i>
+                <p>Real-Time Analysis</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+
+    fileInput.addEventListener('change', function () {
+
+        if (this.files.length > 0) {
+
+            fileName.style.display = "block";
+
+            fileName.innerHTML =
+                `<i class="bi bi-check-circle-fill"></i>
+                 Selected File: <strong>${this.files[0].name}</strong>`;
+        }
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+[2026-04-21 00:08:34] Track ID 3 - Number Plate: |Number Plate|
+|-------------|
+|DL1S AE 0190 |
+[2026-04-21 00:08:37] Track ID 3 - Number Plate: |Number Plate|
+|-------------|
+|DL1S AE 0190 |
+[2026-05-05 17:48:13] Track ID 3 - DL1S AE 0190
+[2026-05-05 17:48:16] Track ID 3 - DL1S AE 0190
+[2026-05-05 17:53:44] Track ID 3 - DL1S AE 0190
+[2026-05-05 17:54:39] Track ID 3 - DL1S AE 0190
+[2026-05-05 17:54:44] Track ID 3 - DL1S AE 0190
+[2026-05-06 14:05:17] Track ID 3 - DL1S AE 0190
+[2026-05-06 14:05:36] Track ID 3 - DL15 AE 0190

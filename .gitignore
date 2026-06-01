@@ -1,0 +1,9 @@
+venv/
+node_modules/
+__pycache__/
+*.pyc
+*.pt
+*.pth
+*.h5
+*.zip
+*.mp4
